@@ -18,9 +18,10 @@ router.get('/', function(req, res) {
     res.render('places/index', {places})
 });
 
-router.get('/new', function(req, res) {
+router.get('/new', (req, res) => {
     res.render('places/new')
-});
+  })
+  
 
 router.post('/', function (req, res) {
     if (!req.body.pic) {
