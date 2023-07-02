@@ -1,28 +1,18 @@
-const router = require('express').Router()
-const places = require('../models/places')
+const router = require('express').Router();
+const places = require('../models/places.js');
 
+//GET /places
 router.get('/', function(req, res) {
-    // let places = [{
-    //     name: 'H-Thai-ML',
-    //     city: 'Seattle',
-    //     state: 'WA',
-    //     cuisines: 'Thai, Pan-Asian',
-    //     pic: '/images/curry.jpg'
-    // }, {
-    //     name: 'Coding Cat Cafe',
-    //     city: 'Phoenix',
-    //     state: 'AZ',
-    //     cuisines: 'Coffee, Bakery',
-    //     pic: '/images/pancake-stack.jpg' 
-    // }]
-    res.render('places/index', {places})
-});
+    res.render('places/index', { places })
+})
 
+//GET /places/new
 router.get('/new', function(req, res) {
     res.render('places/new')
-  })
+})
 
-  router.get('/:id', (req, res) => {
+//GET /places/:id
+router.get('/:id', function(req, res) {
     let id = Number(req.params.id)
     if (isNaN(id)) {
         res.render('error404')
@@ -31,26 +21,80 @@ router.get('/new', function(req, res) {
         res.render('error404')
     }
     else {
-        res.render('places/show', { place: places[id] })
-
+        res.render('places/show', { place: places[id], id }
+        )
     }
-  })
-  
-  
-  
-router.post('/', function (req, res) {
+})
+
+//POST /places
+router.post('/', function(req, res) {
+
     if (!req.body.pic) {
-        // Default image if one is not provided
-        req.body.pic = "http://placekitten.com/400/400"
+        req.body.pic = 'https://placekitten.com/400/400'
     }
     if (!req.body.city) {
-        req.body.city = 'Any town'
+        req.body.city = 'Anytown'
     }
     if (!req.body.state) {
         req.body.state = 'USA'
     }
+
     places.push(req.body)
     res.redirect('/places')
 })
 
-module.exports = router
+//GET /places/:id/edit
+router.get('/:id/edit', function(req, res) {
+    let id = Number(req.params.id)
+    if (isNaN(id)) {
+        res.render('error404')
+    }
+    else if (!places[id]) {
+        res.render('error404')
+    }
+    else {
+        res.render('places/edit', { place: places[id], id })
+    }
+})
+
+//PUT /places/:id
+router.put('/:id', function(req, res) {
+    let id = Number(req.params.id)
+    if (isNaN(id)) {
+        res.render('error404')
+    }
+    else if (!places[id]) {
+        res.render('error404')
+    }
+    else {
+        if (!req.body.pic) {
+            req.body.pic = 'http://placekitten.com/400/400'
+        }
+        if (!req.body.city) {
+            req.body.city = 'Anytown'
+        }
+        if (!req.body.state) {
+            req.body.state = 'USA'
+        }
+
+        places[id] = req.body
+        res.redirect(`/places/${id}`)
+    }
+})
+
+//Delete /places/:id
+router.delete('/:id', function(req, res) {
+    let id = Number(req.params.id)
+    if (isNaN(id)) {
+        res.render('error404')
+    }
+    else if (!places[id]) {
+        res.render('error404')
+    }
+    else {
+        places.splice(id, 1)
+        res.redirect('/places')
+    }
+})
+
+module.exports = router;
