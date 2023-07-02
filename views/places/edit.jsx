@@ -2,7 +2,6 @@ const React = require('react');
 const Def = require('../default.jsx');
 
 function edit_form(data) {
-    // console.log(data);
     return (
         <Def>
             <main>
@@ -24,7 +23,7 @@ function edit_form(data) {
                             <input
                                 className="form-control"
                                 id="pic"
-                                type="url"
+                                // type="url"
                                 name="pic"
                                 value={data.place.pic}
                             />
@@ -73,4 +72,4 @@ function edit_form(data) {
     )
 }
 
-module.exports = edit_form;
+module.exports = edit_form

@@ -33,7 +33,7 @@ router.post('/', function(req, res) {
         req.body.pic = 'https://placekitten.com/400/400'
     }
     if (!req.body.city) {
-        req.body.city = 'Anytown'
+        req.body.city = 'Any town'
     }
     if (!req.body.state) {
         req.body.state = 'USA'
@@ -71,7 +71,7 @@ router.put('/:id', function(req, res) {
             req.body.pic = 'http://placekitten.com/400/400'
         }
         if (!req.body.city) {
-            req.body.city = 'Anytown'
+            req.body.city = 'Any town'
         }
         if (!req.body.state) {
             req.body.state = 'USA'
