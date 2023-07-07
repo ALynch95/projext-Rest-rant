@@ -39,3 +39,8 @@ main {
   margin-left: 20px;
   background-color: white;
 }
+
+h2 {
+  text-align: center;
+  color: cornflowerblue;
+}
