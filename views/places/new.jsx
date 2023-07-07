@@ -17,11 +17,11 @@ function newForm () {
                     </div>
                     <div className="form-group">
                         <label htmlFor='city'>City</label>
-                        <input className='form-control' id="city" name="city" />
+                        <input className='form-control' id="city" name="city" required/>
                     </div>
                     <div className="form-group">
                     <label htmlFor="state">State</label>
-                    <select className="form-control" id="state" name="state">
+                    <select className="form-control" id="state" name="state" required>
                         <option value="">Select a state</option>
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
@@ -79,6 +79,11 @@ function newForm () {
                         <label htmlFor='cuisines'>Cuisines</label>
                         <input className='form-control' id="cuisines" name="cuisines" required />
                     </div>
+                    <div className="form-group">
+                        <label for="founded">Founded Year</label>
+                        <input className="form-control" id="founded" name="founded" required/>
+                    </div>
+
                     <input className='btn btn-primary' type='submit' value='Add Place' />
                 </form>
             </main>
