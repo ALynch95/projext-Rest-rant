@@ -1,5 +1,6 @@
 const React = require('react');
 const Def = require('../default');
+const CommentForm = require('./comment')
 
 function show (data) {
     let comments = (
@@ -48,7 +49,11 @@ function show (data) {
                     </div>
                         <br />
                         <h2>Comments</h2>
-                        {comments}                            
+                        {comments}
+                        <div>
+                        <h2>Add Comment</h2>
+                            <CommentForm placeId={data.id} />
+                        </div>                            
                 </div>
             </main>
         </Def>
