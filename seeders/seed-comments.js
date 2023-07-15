@@ -12,6 +12,7 @@ async function seed() {
         stars: 5.0,
         content: 'Wow, simply amazing! Highly recommended!'
     })
+    
 
     // Add that comment to the place's comment array.
     place.comments.push(comment.id)
