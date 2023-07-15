@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const db = require('../models')
 
+// GET /places
 router.get('/', (req, res) => {
     db.Place.find()
     .then((places) => {
@@ -12,6 +13,7 @@ router.get('/', (req, res) => {
     })
 })
 
+// POST /places
 router.post('/', (req, res) => {
   db.Place.create(req.body)
     .then(() => {
@@ -23,10 +25,12 @@ router.post('/', (req, res) => {
     })
 })
 
+// GET /places/new
 router.get('/new', (req, res) => {
   res.render('places/new')
 })
 
+// GET /places/:id
 router.get('/:id', (req, res) => {
   db.Place.findById(req.params.id)
   .then(place => {
@@ -38,22 +42,27 @@ router.get('/:id', (req, res) => {
   })
 })
 
+// PUT /places/:id
 router.put('/:id', (req, res) => {
   res.send('PUT /places/:id stub')
 })
 
+// DELETE /places/:id
 router.delete('/:id', (req, res) => {
   res.send('DELETE /places/:id stub')
 })
 
+// GET /places/:id/edit
 router.get('/:id/edit', (req, res) => {
   res.send('GET edit form stub')
 })
 
+// POST /places/:id/rant
 router.post('/:id/rant', (req, res) => {
   res.send('GET /places/:id/rant stub')
 })
 
+// DELETE /places/:id/rant/:rantId
 router.delete('/:id/rant/:rantId', (req, res) => {
     res.send('GET /places/:id/rant/:rantId stub')
 })
